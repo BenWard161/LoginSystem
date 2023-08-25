@@ -1,19 +1,30 @@
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Program {
     public static void main(String[] args) {
+        HashMap<String, String> userLogins = new HashMap<String, String>();
+
+        userLogins.put("Admin", "Password");
+        userLogins.put("Admin1", "Password2");
+        userLogins.put("Admin2", "Password2");
+
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter username: ");
         String inputUsername = reader.nextLine();
         System.out.println("Enter password: ");
         String inputPassword = reader.nextLine();
 
-
-        if (inputUsername.equals("Admin") && inputPassword.equals("Password"))
+        boolean loggedIn = false;
+        if (userLogins.containsKey(inputUsername))
         {
-            System.out.println("Welcome...");
+            if (userLogins.get(inputUsername).equals(inputPassword))
+            {
+                System.out.println("Welcome...");
+                loggedIn = true;
+            }
         }
-        else
+        else if (!loggedIn)
         {
             System.out.println("ACCESS DENIED");
         }
