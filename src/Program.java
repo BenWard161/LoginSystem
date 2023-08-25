@@ -6,7 +6,7 @@ public class Program {
         HashMap<String, String> userLogins = new HashMap<String, String>();
 
         userLogins.put("Admin", "Password");
-        userLogins.put("Admin1", "Password2");
+        userLogins.put("Admin1", "Password1");
         userLogins.put("Admin2", "Password2");
 
         Scanner reader = new Scanner(System.in);
@@ -15,16 +15,18 @@ public class Program {
         System.out.println("Enter password: ");
         String inputPassword = reader.nextLine();
 
-        boolean loggedIn = false;
-        if (userLogins.containsKey(inputUsername))
+        try
         {
             if (userLogins.get(inputUsername).equals(inputPassword))
             {
                 System.out.println("Welcome...");
-                loggedIn = true;
+            }
+            else
+            {
+                throw new Exception("Login Error");
             }
         }
-        else if (!loggedIn)
+        catch (Exception e)
         {
             System.out.println("ACCESS DENIED");
         }
